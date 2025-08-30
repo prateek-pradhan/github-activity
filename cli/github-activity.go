@@ -8,8 +8,8 @@ import (
 )
 
 type GithubEvent struct {
-	Type      string `json:"type"`
-	Repo      struct {
+	Type string `json:"type"`
+	Repo struct {
 		Name string `json:"name"`
 	} `json:"repo"`
 	CreatedAt string `json:"created_at"`
@@ -60,6 +60,23 @@ func getGithubActivityOfUser(username string){
 	}
 
 	for _, e := range events {
-		fmt.Printf("Event: %-15s Repo: %-30s Date: %s\n", e.Type, e.Repo.Name, e.CreatedAt)
+		switch e.Type {
+		case "PushEvent":
+			fmt.Printf("Pushed to %s at %s\n", e.Repo.Name, e.CreatedAt)
+		case "PullRequestEvent":
+			fmt.Printf("Pull request in %s at %s\n", e.Repo.Name, e.CreatedAt)
+		case "IssuesEvent":
+			fmt.Printf("Issue in %s at %s\n", e.Repo.Name, e.CreatedAt)
+		case "CreateEvent":
+			fmt.Printf("Created in %s at %s\n", e.Repo.Name, e.CreatedAt)
+		case "PullRequestReviewEvent":
+			fmt.Printf("Reviewed pull request in %s at %s\n", e.Repo.Name, e.CreatedAt)
+		case "ForkEvent":
+			fmt.Printf("Forked %s at %s\n", e.Repo.Name, e.CreatedAt)
+		case "WatchEvent":
+			fmt.Printf("Starred %s at %s\n", e.Repo.Name, e.CreatedAt)
+		default:
+			fmt.Printf("Event: %s Repo: %s Date: %s\n", e.Type, e.Repo.Name, e.CreatedAt)
+		}
 	}
 }
