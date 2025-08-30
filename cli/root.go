@@ -11,7 +11,7 @@ var githubActivityCmd = &cobra.Command{
 	Short: "Fetch and display GitHub activity",
 	Long:  `Fetch and display GitHub activity such as commits, pull requests, and issues.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		getGithubActivityOfUser(args[0])
+		getGithubActivityOfUser(args[1])
 	},
 }
 
