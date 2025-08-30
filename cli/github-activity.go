@@ -66,7 +66,7 @@ func getGithubActivityOfUser(username string){
 		case "PullRequestEvent":
 			fmt.Printf("Pull request in %s at %s\n", e.Repo.Name, e.CreatedAt)
 		case "IssuesEvent":
-			fmt.Printf("Issue in %s at %s\n", e.Repo.Name, e.CreatedAt)
+			fmt.Printf("Opened Issue in %s at %s\n", e.Repo.Name, e.CreatedAt)
 		case "CreateEvent":
 			fmt.Printf("Created in %s at %s\n", e.Repo.Name, e.CreatedAt)
 		case "PullRequestReviewEvent":
